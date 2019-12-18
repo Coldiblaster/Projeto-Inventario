@@ -1,0 +1,41 @@
+.main-footer {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+}
+
+button {
+    margin-left: 5px;
+}
+
+.table-actions {
+    width: 150px;
+}
+
+.tab-content {
+    border: solid 1px #ccc;
+    padding: 10px 10px 80px 0px;
+    margin: -1px 0px 0px 0px;
+}
+
+.nav-tabs {
+    border-top: solid 1px #ccc;
+    border-left: solid 1px #ccc;
+    border-right: solid 1px #ccc;
+}
+
+.btn-primary{
+    background-color: rgb(0, 123, 255);
+}
+
+.btn-primary:hover{
+    background-color: rgb(17, 79, 146);
+}
+
+.nav-tabs-custom > .nav-tabs > li.active {
+    border-top-color: rgb(0, 123, 255);
+}
+
+.nav-tabs-custom > .nav-tabs :hover{
+    color: rgb(0, 123, 255);
+}

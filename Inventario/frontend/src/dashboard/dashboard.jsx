@@ -12,7 +12,6 @@ class Dashboard extends Component {
     componentWillMount() {
         this.props.getSummary()
     }
-
     render() {
 
         const { tipos_softwares, dispositivos, inventario} = this.props.summary

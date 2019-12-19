@@ -8,8 +8,15 @@ exports.up = function(knex, Promise) {
         table.string('disp_proc',30)
         table.string('disp_ram', 8)
         table.string('disp_hd', 8)
+        table.string('disp_host',20)
+        table.string('disp_ip',15)
+        table.string('disp_mac',17)
+        table.string('disp_tipolicenca_so',50)
+        table.string('disp_imei',20)
+        table.string('disp_modelo',40)
         table.integer('disp_nf_id').references('nf_id').inTable('notas_fiscais')
         table.integer('disp_tipo_id').references('disp_tipo_id').inTable('tipos_dispositivos')
+        
     })    
 };
 

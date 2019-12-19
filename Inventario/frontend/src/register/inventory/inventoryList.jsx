@@ -13,7 +13,7 @@ class InventoryList extends Component {
         const list = this.props.list || []
         return list.map(bc => (
            <tr key={bc.inv_id}>
-               <td>{bc.disp_id}</td>
+               <td>{bc.tipo_disp_nome}</td>
                <td>{bc.soft_id}</td>
                <td>{bc.tipo_key}</td>
                <td>{bc.inv_descricao}</td>

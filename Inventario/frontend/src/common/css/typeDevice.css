@@ -3,3 +3,27 @@
     padding: 10px 10px 160px 10px;
     margin: 17px 15px 5px 14px;
 }
+
+/* .modalDisp {
+    position: relative;
+    margin-right: 200px;
+    margin-left: -300px;
+    display: flex;
+    flex-direction: column;
+    width: 200%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: .3rem;
+    outline: 0
+} */
+
+.disptipo{
+    font-size: 0.9em;
+    margin-top: 3px;
+}
+
+.modal{
+    font-size: 15px;
+}

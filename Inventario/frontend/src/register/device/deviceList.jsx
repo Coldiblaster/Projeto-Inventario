@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { getList, showUpdate, showDelete } from './deviceActions'
+import { getListTipoDisp, showUpdate, showDelete } from './deviceActions'
 
 class DeviceList extends Component {
 
     componentWillMount() {
-        this.props.getList()
+        this.props.getListTipoDisp()
     }
 
     renderRows() {
@@ -48,5 +48,5 @@ class DeviceList extends Component {
 }
 
 const mapStateToProps = state => ({list: state.device.list})
-const mapDispatchToProps = dispatch => bindActionCreators({getList, showUpdate, showDelete}, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({getListTipoDisp, showUpdate, showDelete}, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(DeviceList)

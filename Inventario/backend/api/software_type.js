@@ -49,6 +49,7 @@ module.exports = app => {
                 .where({ soft_id: soft_id })
                 .increment('soft_qtd', 1)
                 .catch(err => res.status(500).send(err))  
+                
             }   
                
             try{ // Verifica se existe chaves iguais  
@@ -153,8 +154,7 @@ module.exports = app => {
                 .decrement('soft_qtd', 1) 
                 .then(_ => res.status(204).send()) // Status 204 deu tudo certo se chegar aqui
                 .catch(err => res.status(500).send(err))
-
-            res.status(204).send()
+                
         } catch(msg) {
             res.status(400).send(msg)
         }

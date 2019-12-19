@@ -6,7 +6,7 @@ import { showTabs, selectTab } from '../../common/tab/tabActions'
 const BASE_URL = 'http://localhost:3000'
 const INITIAL_VALUES = {}
 
-export function getList() {
+export function getListTipoDisp() {
     const request = axios.get(`${BASE_URL}/device_type`)
     return {
         type: 'DEVICES_OBTAINED',
@@ -60,7 +60,7 @@ export function init() {
     return [
         showTabs('tabList', 'tabCreate'),
         selectTab('tabList'),
-        getList(),
+        getListTipoDisp(),
         initialize('deviceForm', INITIAL_VALUES)
     ]
 }

@@ -43,6 +43,7 @@ module.exports = app => {
     const get = (req, res) => { // vai pegar todos os usuarios do sistema, na parte dos artigos já tem então pode implementar a paginação para usuario e categoria 
         app.db('tipos_dispositivos')
             .select('tipo_disp_id', 'tipo_disp_nome', 'tipo_disp_qtd')
+            .orderBy('tipo_disp_nome')
              // .whereNull('deletedAt') // Significa que esse campo deve ser nullos, pra significar quando for exclusão logica
             .then(tipo_disp => res.json(tipo_disp)) // Se vier os softwares, deu certo
             .catch(err => res.status(500).send(err)) //se houver erro

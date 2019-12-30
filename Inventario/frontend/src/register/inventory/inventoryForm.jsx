@@ -16,8 +16,14 @@ import LabelAndInput from '../../common/form/labelAndInput'
 import If from '../../common/operator/ifInventario'
 import { formatarData } from '../../common/operator/formataData'
 
+/**
+ * @class que representa o cadastro de Inventario
+ */
 class InventoryForm extends React.Component {
-
+    /**
+     * 
+     * @param {*} props o state recebe os códigos dos select e das modal
+     */
     constructor(props) {
         super(props);
         this.state = {
@@ -33,18 +39,30 @@ class InventoryForm extends React.Component {
         this.setDevice = this.setDevice.bind(this);
     }
 
+    /**
+     * Recebe o select do software
+     * @param {*} event código do Software
+     */
     setSoftware(event) {
         this.setState({ selectedValue: event.target.value })
     }
-
+    /**
+     * Recebe o select do Tipo de Software
+     * @param {*} event código do Tipo de Software
+     */
     setTipoSoft(event) {
         this.setState({ selectedTipo: event.target.value })
     }
-
+    /**
+     * Recebe o select do Dispositivo
+     * @param {*} event código do Dispositivo
+     */
     setDevice(event) {
         this.setState({ selectedDisp: event.target.value })
     }
-
+    /**
+     * Abre a Modal
+     */
     setShowModal = () => {
         this.setState({ showModal: true })
     }
@@ -52,7 +70,9 @@ class InventoryForm extends React.Component {
     setShowModalDisp = () => {
         this.setState({ showDisp: true })
     }
-
+    /**
+     * Fecha o Modal
+     */
     setCloseModal = () => {
         this.setState({ showModal: false })
         this.setState({ showDisp: false })
@@ -65,7 +85,6 @@ class InventoryForm extends React.Component {
         this.props.getListTiposSoft()
         this.props.getListInv()
         this.props.getListTipoDisp()
-
     }
 
     renderRows() {

@@ -85,7 +85,7 @@ class DeviceForm extends Component {
                         {
                             tipo_disp == 'Desktop' || tipo_disp == 'Notebook' ? (
                                 <div className='detalhesDevice'>
-                                    <h4 className='tituTipoSoft'>Detalhes do Desktop ou Notebook</h4>
+                                    <h4 className='tituTipoSoft'>Detalhes do Computador</h4>
                                     <div className='col-md-2'>
                                         <Field name='disp_host' component={LabelAndInput} readOnly={readOnly}
                                             label='HostName' placeholder='Nome Local' cols='0' />

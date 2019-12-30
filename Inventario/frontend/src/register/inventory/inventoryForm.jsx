@@ -32,7 +32,8 @@ class InventoryForm extends React.Component {
             selectedDisp: 0,
             showModal: false,
             showDisp: false,
-            verifica: 0
+            verifica: 0,
+            disp: 0
         }
         this.setSoftware = this.setSoftware.bind(this);
         this.setTipoSoft = this.setTipoSoft.bind(this);
@@ -87,9 +88,12 @@ class InventoryForm extends React.Component {
         this.props.getListTipoDisp()
     }
 
+    /* notificarSaida = (lugar) => {
+        alert(lugar)
+    } */
+
     renderRows() {
         const listTipoS = this.props.listTipoS || []
-        const listInv = this.props.listInv || []
         return (
             <div>
                 <Modal show={this.state.showModal} backdrop={false} animation={false} size='lg'>
@@ -135,10 +139,13 @@ class InventoryForm extends React.Component {
                 </Modal>
                 <Modal className='modalDisp' size='lg' show={this.state.showDisp} backdrop={false} animation={false} aria-labelledby="example-custom-modal-styling-title">
                     <Modal.Header>
-                        <Modal.Title>Inclusão de Software</Modal.Title>
+                        <Modal.Title>Inclusão de Dispositivo</Modal.Title>
+                        {
+                            this.tipo_disp > 0 ? this.state.showDisp = false : this.state.showDisp = false
+                        }
                     </Modal.Header>
                     <Modal.Body>
-                        <DeviceTypeModal />
+                        <DeviceTypeModal submitLabel='Incluir' submitClass='primary' />
                     </Modal.Body>
                     <Modal.Footer>
                         <Button type='submit' onClick={this.setCloseModal}>
@@ -153,13 +160,12 @@ class InventoryForm extends React.Component {
     render() {
         const listSoft = this.props.listSoft || []
         const listUni = this.props.listUni || []
-        const listDisp = this.props.listDisp || []
         const listTipoS = this.props.listTipoS || []
-        const listInv = this.props.listInv || []
         const listTipoD = this.props.listDispTipo || []
         const desabilitaSelect = this.props.readOnly === true
         const { handleSubmit, readOnly } = this.props
-        //console.log(this.state.selectedDisp)
+        const tipo_disp = this.props.tipo_disp
+        console.log(tipo_disp)
         return (
             // TELA INVENTARIO
             <form onSubmit={handleSubmit}>
@@ -227,20 +233,21 @@ class InventoryForm extends React.Component {
                                 <If test={this.state.selectedDisp} modo={this.props.submitLabel}>
                                     <h4 className='tituTipoSoft'>Descrições do Dispositivo</h4>
                                     <div className='detalhesSoft'>
-                                        <div className='col-md-6'>
-                                            <div className='form-group'>
-                                                <label>Serial</label>
-                                                <Field name="inv_tipo_id" component='select' className='form-control' disabled={desabilitaSelect}>
-                                                    <option>Selecione um Dispositivo</option>
-                                                    {
-                                                        listDisp.length === 0 ? [] : listDisp.map((item, index) =>
-                                                            item.disp_tipo_id == this.state.selectedDisp ? (
-                                                                <option value={item.disp_id} key={"lista-getListTiposSoft" + index}>{item.tipo_disp_nome}</option>
-                                                            ) : (null)
-                                                        )
-                                                    }
-                                                </Field>
-                                            </div>
+                                        <div className='col-md-2'>
+                                            <Field name='disp_patrimonio' component={LabelAndInput} readOnly={readOnly}
+                                                label='Patrimonio' cols='0' placeholder='Patrimonio' maxLength='250' disabled />
+                                        </div>
+                                        <div className='col-md-2'>
+                                            <Field name='disp_marca' component={LabelAndInput} readOnly={readOnly}
+                                                label='Marca' cols='0' placeholder='Marca' maxLength='250' disabled />
+                                        </div>
+                                        <div className='col-md-2'>
+                                            <Field name='disp_host' component={LabelAndInput} readOnly={readOnly}
+                                                label='Host' cols='0' placeholder='Host' maxLength='250' disabled />
+                                        </div>
+                                        <div className='col-md-2'>
+                                            <Field name='disp_ip' component={LabelAndInput} readOnly={readOnly}
+                                                label='IP' cols='0' placeholder='IP' maxLength='250' disabled />
                                         </div>
                                         <button type='button' className='btn btn btn-success btn-buscaTipo'
                                             onClick={this.setShowModalDisp}>Detalhes do Dispositivo</button>
@@ -269,6 +276,7 @@ class InventoryForm extends React.Component {
                                         <button type='button' className='btn btn btn-success btn-buscaTipo'
                                             onClick={this.setShowModal}>Detalhes do Software</button>
                                         {this.renderRows()}
+
                                     </div>
                                 </If>
 
@@ -284,7 +292,6 @@ class InventoryForm extends React.Component {
                     </div>
                 </section>
             </form>
-
         )
     }
 }
@@ -294,8 +301,8 @@ InventoryForm = reduxForm({ form: 'inventoryForm', destroyOnUnmount: false })(In
 const selector = formValueSelector('inventoryForm')
 const mapStateToProps = state => ({
     listUni: state.unidade.list, listSoft: state.software.list, listDisp: state.type_device.list,
-    listTipoS: state.type_software.list, listInv: state.inventory.list, listDispTipo: state.device.list
-    //tipo: selector(state, 'tipo_disp_nome')
+    listTipoS: state.type_software.list, listInv: state.inventory.list, listDispTipo: state.device.list,
+    tipo_disp: selector(state, 'disp_id')
 })
 const mapDispatchToProps = dispatch => bindActionCreators({
     init, getList, getListSoftwares, getListDispositivo, getListTiposSoft,

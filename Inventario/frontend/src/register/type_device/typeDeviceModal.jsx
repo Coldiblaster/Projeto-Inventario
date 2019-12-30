@@ -3,8 +3,10 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { reduxForm, Field } from 'redux-form'
 import { getListDispositivo } from './typeDeviceActions'
+import { showDisp } from '../inventory/inventoryActions'
 
 class TypeDeviceModal extends React.Component {
+
     componentWillMount() {
         this.props.getListDispositivo()
     }
@@ -18,15 +20,14 @@ class TypeDeviceModal extends React.Component {
                 <td>{bc.disp_marca}</td>
                 <td>{bc.disp_modelo}</td>
                 <td>{bc.disp_imei}</td>
-                <button className='btn btn-success disptipo'>
+                <button className='btn btn-success disptipo' onClick={() => this.props.showDisp(bc)}>
                         <i className='fa fa-plus'></i>
-                    </button> 
+                </button> 
             </tr>
         ))
     }
     // Verificar depois na aula de todoapp algo sobre utilizar o button só uma vez
     render() {
-        console.log('teste')
         return (
             <div>
                 <table className='table'>
@@ -50,6 +51,8 @@ class TypeDeviceModal extends React.Component {
 }
 
 TypeDeviceModal = reduxForm({form: 'typeDeviceModal', destroyOnUnmount: false})(TypeDeviceModal)
-const mapStateToProps = state => ({ list: state.type_device.list })
-const mapDispatchToProps = dispatch => bindActionCreators({getListDispositivo} ,dispatch)
+const mapStateToProps = state => ({ list: state.type_device.list})
+const mapDispatchToProps = dispatch => bindActionCreators({getListDispositivo, showDisp}, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(TypeDeviceModal)
+ 
+

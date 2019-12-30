@@ -64,3 +64,9 @@ export function init() {
         initialize('inventoryForm', INITIAL_VALUES)
     ]
 }
+
+export function showDisp(device) {
+    return [
+        initialize('inventoryForm', device, true)
+    ]
+}
